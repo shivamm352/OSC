@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+option java_package = "com.osc.save_cart_product";
+option java_multiple_files = true;
+
+message FetchCartProduct{
+  string userId = 1;
+}
+
+message FetchedResponse{
+  string message = 1;
+}
+
+message CartProductRequest {
+  string userId = 1;
+}
+
+message SaveCartProduct {
+  string message = 1;
+}
+
+service SaveCartAddedProducts {
+  rpc GetCartProducts(FetchCartProduct) returns (FetchedResponse);
+  rpc SaveCartProducts(CartProductRequest) returns (SaveCartProduct);
+}
+

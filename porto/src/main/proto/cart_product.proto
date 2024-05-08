@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+option java_package = "com.osc.cart_product";
+option java_multiple_files = true;
+
+
+message CartRequest {
+  string userId = 1;
+}
+
+message CartProduct {
+  string prodId = 1;
+  string prodName = 2;
+  double price = 3;
+  int32 cartQty = 4;
+}
+
+message CartResponse {
+  repeated CartProduct cartProduct = 1;
+}
+
+service CartService {
+  rpc GetCartResponse (CartRequest) returns (CartResponse);
+}
+
+//message CartRequest {
+//  string userId = 1;
+//}
+//
+//message CartProduct {
+//  string prodId = 1;
+//  string prodName = 2;
+//  double price = 3;
+//  int32 cartQty = 4;
+//}
+//
+//message CartResponse {
+//  repeated CartProduct cartProducts = 1;
+//  int32 ProductsCartCount = 2;
+//  double totalPrice = 3;
+//}
+//
+//service CartService {
+//  rpc GetCartResponse (CartRequest) returns (CartResponse);
+//}

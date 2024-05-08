@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+option java_package = "com.osc.user_proto";
+option java_multiple_files = true;
+
+message UserOTPValidationRequest{
+  string userId = 1;
+  int64 otp = 2;
+}
+message UserOTPValidationResponse{
+  string userId = 1;
+  int64 otp = 2;
+  int32 invalidAttempts = 3;
+  bool isInValidUserId = 4;
+}
+
+message OTPAttemptsRequest {
+  string userId = 1;
+}
+
+message OTPAttemptsResponse {
+  int32 count = 1;
+}
+
+message OTPValidationLimitExceededResponse {
+  string userId = 1;
+  string message = 2;
+}
+
+message UserSaveRequest{
+  string userId = 1;
+}
+
+message UserSaveResponse{
+  string userId = 1;
+  int64 otp = 2;
+  string name = 3;
+  string email = 4;
+  string contact = 5;
+  string dob = 6;
+}
+
+service CacheService {
+  rpc GetUserDetails(UserOTPValidationRequest) returns (UserOTPValidationResponse);
+  rpc IncrementInvalidAttempts(UserOTPValidationRequest) returns (UserOTPValidationResponse);
+  rpc GetOtpAttemptRequest(OTPAttemptsRequest) returns (OTPAttemptsResponse);
+  rpc OTPValidationLimitExceeded(OTPAttemptsRequest) returns (OTPValidationLimitExceededResponse);
+  rpc GetSaveRequest(UserSaveRequest) returns (UserSaveResponse);
+}
+
+

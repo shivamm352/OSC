@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+option java_package = "com.osc.product_cache";
+option java_multiple_files = true;
+import "google/protobuf/empty.proto";
+
+message ProductDataDTO {
+  string categoryId = 1;
+  string productId = 2;
+  string productName = 3;
+  double productPrice = 4;
+  string productDescription = 5;
+  int32 viewCount = 6;
+}
+
+message ProductMapResponse {
+  map<string, CategoryProductMap> product_map = 1;
+}
+
+message CategoryProductMap {
+  map<string, ProductDataDTO> product_map = 1;
+}
+
+service ProductService {
+  rpc GetProductMap(google.protobuf.Empty) returns (ProductMapResponse);
+}

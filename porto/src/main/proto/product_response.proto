@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+option java_package = "com.osc.product_response";
+option java_multiple_files = true;
+
+message ProductRequest {
+  string categoryId = 1;
+  string productId = 2;
+}
+
+message ProductDetails {
+  string categoryId = 1;
+  string productId = 2;
+  string productName = 3;
+  string productDescription = 4;
+  double productPrice = 5;
+}
+
+message SimilarProduct {
+  string categoryId = 1;
+  string productId = 2;
+  string productName = 3;
+  double productPrice = 4;
+}
+
+message ProductResponse {
+  ProductDetails productDetails = 1;
+  repeated SimilarProduct similarProducts = 2;
+}
+
+message UserIdRequest {
+  string userId = 1;
+}
+
+message UserIdResponse {
+  string userId = 1;
+}
+
+service ProductDetailService {
+  rpc GetProductInformation(ProductRequest) returns (ProductResponse);
+  rpc sendUserId(UserIdRequest) returns (UserIdResponse);
+}

@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option java_package = "com.osc.filter_product";
+option java_multiple_files = true;
+
+message Product {
+  string productId = 1;
+  string prodName = 2;
+  string catId = 3;
+  double prodMarketPrice = 4;
+}
+
+message FilterProductRequest{
+  string cateId = 1;
+  string filter = 2;
+}
+
+message FilteredProductResponse {
+  string cateId = 1;
+  repeated Product product = 2;
+}
+
+service FilteredProductService {
+  rpc FilterProducts(FilterProductRequest) returns (FilteredProductResponse);
+}
