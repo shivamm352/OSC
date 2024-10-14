@@ -34,6 +34,7 @@ public class RegistrationServiceImpl implements RegistrationService {
         this.grpcClientRequest = grpcClientRequest;
     }
 
+    //this method to check validity of Email
     @Override
     public boolean isEmailExists(String email) {
         Optional<User> existingUser = userRepository.findByEmail(email);
